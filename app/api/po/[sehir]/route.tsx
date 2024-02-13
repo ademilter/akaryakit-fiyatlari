@@ -5,7 +5,6 @@ import { CITIES } from "../const";
 import { NextRequest } from "next/server";
 
 export const runtime = "edge";
-export const revalidate = 3600; // 60*60*1
 export const preferredRegion = ["fra1", "cdg1", "dub1"];
 
 export async function GET(
@@ -24,7 +23,7 @@ export async function GET(
   const url = `https://www.petrolofisi.com.tr/akaryakit-fiyatlari/${sehir}-akaryakit-fiyatlari`;
 
   try {
-    const response = await fetch(url, { next: { revalidate: 3600 } });
+    const response = await fetch(url);
     const data = await response.text();
 
     const result = parse(data, schema as Schema);
@@ -33,6 +32,8 @@ export async function GET(
       status: 200,
       headers: {
         "Content-type": "application/json; charset=utf-8",
+        "Cache-Control": "public, s-maxage=3600",
+        "Vercel-CDN-Cache-Control": "public, s-maxage=3600",
       },
     });
   } catch (error) {

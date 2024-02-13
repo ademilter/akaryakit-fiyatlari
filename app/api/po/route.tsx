@@ -9,6 +9,7 @@ export async function GET(request: NextRequest) {
     status: 200,
     headers: {
       "Content-type": "application/json; charset=utf-8",
+      "Vercel-CDN-Cache-Control": "public, s-maxage=604800",
     },
   });
 }
