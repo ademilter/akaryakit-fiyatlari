@@ -1,34 +1,38 @@
-const priceSchema = {
+const schema = {
   schema: {
-    tables: {
-      selector: "table.table-prices tr.price-row | array",
+    date: {
+      fill: new Date().toUTCString(),
+    },
+    data: {
+      selector: "table.table-prices tr.price-row",
+      type: "array",
       schema: {
         ilce: "td:nth-child(1)",
-        vMax95: {
+        benzin: {
           selector: "td:nth-child(2)",
           schema: {
-            fiyat: "span.with-tax",
+            // fiyat: "span.with-tax",
             fiyatKDVli: "span.without-tax",
           },
         },
-        vMaxDiesel: {
+        mazotMax: {
           selector: "td:nth-child(3)",
           schema: {
-            fiyat: "span.with-tax",
+            // fiyat: "span.with-tax",
             fiyatKDVli: "span.without-tax",
           },
         },
-        vProDiesel: {
+        mazotPro: {
           selector: "td:nth-child(4)",
           schema: {
-            fiyat: "span.with-tax",
+            // fiyat: "span.with-tax",
             fiyatKDVli: "span.without-tax",
           },
         },
-        poGaz: {
+        gaz: {
           selector: "td:nth-child(5)",
           schema: {
-            fiyat: "span.with-tax",
+            // fiyat: "span.with-tax",
             fiyatKDVli: "span.without-tax",
           },
         },
@@ -37,4 +41,4 @@ const priceSchema = {
   },
 };
 
-export { priceSchema };
+export { schema };
