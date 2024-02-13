@@ -1,3 +1,6 @@
+import type { Schema } from "muninn";
+import { parse } from "muninn";
+import { schema } from "../schema";
 import { CITIES } from "../const";
 import { NextRequest } from "next/server";
 
@@ -17,34 +20,13 @@ export async function GET(
     });
   }
 
-  const url = [
-    "https://api.opet.com.tr/api/fuelprices/prices?ProvinceCode=",
-    code,
-    "&IncludeAllProducts=true",
-  ].join("");
+  const url = `https://www.alpet.com.tr/tr-TR/akaryakit-fiyatlari?city=${sehir}`;
 
   try {
     const response = await fetch(url);
-    const data: {
-      districtName: string;
-      prices: { productCode: string; amount: number }[];
-    }[] = await response.json();
+    const data = await response.text();
 
-    const result = {
-      lastUpdate: new Date().toUTCString(),
-      data: data.map((city: any) => {
-        const a100 = city.prices.find((o: any) => o.productCode === "A100");
-        const a128 = city.prices.find((o: any) => o.productCode === "A128");
-        const a110 = city.prices.find((o: any) => o.productCode === "A110");
-
-        return {
-          ilce: city.districtName,
-          benzin: a100.amount,
-          mazot: a128.amount,
-          lpg: a110.amount,
-        };
-      }),
-    };
+    const result = parse(data, schema as Schema);
 
     return Response.json(result, {
       status: 200,

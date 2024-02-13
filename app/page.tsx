@@ -24,6 +24,24 @@ export default function Home() {
         Opet fiyatları:{" "}
         <a href="/api/opet/istanbul-avrupa">/api/opet/istanbul-avrupa</a>
       </p>
+
+      <hr />
+
+      <p>
+        Alpet şehir isimleri: <a href="/api/alpet">/api/alpet</a>
+      </p>
+      <p>
+        Alpet fiyatları: <a href="/api/alpet/ADANA">/api/alpet/ADANA</a>
+      </p>
+
+      <hr />
+
+      <p>
+        Türkiye Petrolleri şehir isimleri: <a href="/api/tp">/api/tp</a>
+      </p>
+      <p>
+        Türkiye Petrolleri: <a href="/api/tp/adana">/api/tp/adana</a>
+      </p>
     </main>
   );
 }

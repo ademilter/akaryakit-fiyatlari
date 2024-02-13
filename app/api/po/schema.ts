@@ -9,32 +9,13 @@ const schema = {
       schema: {
         ilce: "td:nth-child(1)",
         benzin: {
-          selector: "td:nth-child(2)",
-          schema: {
-            // fiyat: "span.with-tax",
-            fiyatKDVli: "span.without-tax | float",
-          },
+          selector: "td:nth-child(2) span.without-tax | float",
         },
-        mazotMax: {
-          selector: "td:nth-child(3)",
-          schema: {
-            // fiyat: "span.with-tax",
-            fiyatKDVli: "span.without-tax | float",
-          },
+        mazot: {
+          selector: "td:nth-child(4) span.without-tax | float",
         },
-        mazotPro: {
-          selector: "td:nth-child(4)",
-          schema: {
-            // fiyat: "span.with-tax",
-            fiyatKDVli: "span.without-tax | float",
-          },
-        },
-        gaz: {
-          selector: "td:nth-child(5)",
-          schema: {
-            // fiyat: "span.with-tax",
-            fiyatKDVli: "span.without-tax | float",
-          },
+        lpg: {
+          selector: "td:nth-child(5) span.without-tax | float",
         },
       },
     },
