@@ -3,6 +3,7 @@ import { parse } from "muninn";
 import { priceSchema } from "@/utils/schemas";
 import { CITY_NAMES } from "@/utils/const";
 
+export const runtime = "edge";
 export const revalidate = 3600; // 60*60*1
 export const preferredRegion = ["fra1", "cdg1", "dub1"];
 
