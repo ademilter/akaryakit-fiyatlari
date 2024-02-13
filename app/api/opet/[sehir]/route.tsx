@@ -32,7 +32,7 @@ export async function GET(
     }[] = await response.json();
 
     const result = {
-      date: new Date().toUTCString(),
+      lastUpdate: new Date().toUTCString(),
       data: data.map((city: any) => {
         const a100 = city.prices.find((o: any) => o.productCode === "A100");
         const a121 = city.prices.find((o: any) => o.productCode === "A121");
