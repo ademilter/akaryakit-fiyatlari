@@ -2,8 +2,8 @@ export default function Home() {
   return (
     <main className="">
       <h3>
-        Türkiye'deki akaryakıt fiyatlarını listelemek için aşağıdaki endpointi
-        kullanın
+        Türkiye&apos;deki akaryakıt fiyatlarını listelemek için aşağıdaki
+        endpointi kullanın
       </h3>
 
       <hr />
