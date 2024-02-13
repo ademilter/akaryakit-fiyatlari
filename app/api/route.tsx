@@ -3,7 +3,8 @@ import { parse } from "muninn";
 import { priceSchema } from "@/utils/schemas";
 import { CITY_NAMES } from "@/utils/const";
 
-export const revalidate = 3600;
+export const revalidate = 3600; // 60*60*1
+export const preferredRegion = ["fra1", "cdg1", "dub1"];
 
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
@@ -18,7 +19,7 @@ export async function GET(request: NextRequest) {
   const url = `https://www.petrolofisi.com.tr/akaryakit-fiyatlari/${sehir}-akaryakit-fiyatlari`;
 
   // fetch the data
-  const istanbul = await fetch(url);
+  const istanbul = await fetch(url, { next: { revalidate: 3600 } });
   const istanbulText = await istanbul.text();
 
   // parse the data
