@@ -23,6 +23,15 @@ export default function Home() {
       <p>
         Türkiye Petrolleri: <a href="/api/tp/34">/api/tp/34</a>
       </p>
+
+      <hr />
+
+      <p>
+        BP şehir isimleri: <a href="/api/bp">/api/tp</a>
+      </p>
+      <p>
+        BP: <a href="/api/bp/ANTALYA">/api/tp/ANTALYA</a>
+      </p>
     </main>
   );
 }
