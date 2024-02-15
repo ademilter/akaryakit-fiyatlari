@@ -51,6 +51,12 @@ export default function Home() {
       <p>
         BP: <a href="/api/bp/ANTALYA">/api/tp/ANTALYA</a>
       </p>
+      <p>
+        aytemiz şehir isimleri: <a href="/api/aytemiz">/api/aytemiz</a>
+      </p>
+      <p>
+        aytemiz: <a href="/api/aytemiz/ANTALYA">/api/aytemiz/ANTALYA</a>
+      </p>
     </main>
   );
 }
