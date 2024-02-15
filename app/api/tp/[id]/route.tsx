@@ -3,26 +3,27 @@ import { parse } from "muninn";
 import { schema } from "../schema";
 import { CITIES } from "../const";
 import { NextRequest } from "next/server";
+import { isValidId } from "@/utils/helper";
 
 export const runtime = "edge";
 export const preferredRegion = ["fra1", "cdg1", "dub1"];
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { sehir: string } },
+  { params }: { params: { id: string } },
 ) {
-  const sehir = params.sehir;
-  const code = CITIES[sehir];
+  const id = params.id;
 
-  if (!code) {
-    return new Response("Geçersiz şehir adı", {
+  if (!isValidId(Number(id))) {
+    return new Response("Geçersiz plaka", {
       status: 400,
     });
   }
 
-  const url = `https://www.alpet.com.tr/tr-TR/akaryakit-fiyatlari?city=${sehir}`;
-
   try {
+    const city = CITIES[id];
+    const url = `https://www.tppd.com.tr/${city}-akaryakit-fiyatlari`;
+
     const response = await fetch(url);
     const data = await response.text();
 
