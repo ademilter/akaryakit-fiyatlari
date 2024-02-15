@@ -9,38 +9,19 @@ export default function Home() {
       <hr />
 
       <p>
-        Petrol Ofisi şehir isimleri: <a href="/api/po">/api/po</a>
-      </p>
-      <p>
-        Petrol Ofisi fiyatları: <a href="/api/po/istanbul">/api/po/istanbul</a>
+        Petrol Ofisi fiyatları: <a href="/api/po/34">/api/po/34</a>
       </p>
 
-      <hr />
-
       <p>
-        Opet şehir isimleri: <a href="/api/opet">/api/opet</a>
-      </p>
-      <p>
-        Opet fiyatları:{" "}
-        <a href="/api/opet/istanbul-avrupa">/api/opet/istanbul-avrupa</a>
+        Opet fiyatları: <a href="/api/opet/34">/api/opet/34</a>
       </p>
 
-      <hr />
-
       <p>
-        Alpet şehir isimleri: <a href="/api/alpet">/api/alpet</a>
-      </p>
-      <p>
-        Alpet fiyatları: <a href="/api/alpet/ADANA">/api/alpet/ADANA</a>
+        Alpet fiyatları: <a href="/api/alpet/34">/api/alpet/34</a>
       </p>
 
-      <hr />
-
       <p>
-        Türkiye Petrolleri şehir isimleri: <a href="/api/tp">/api/tp</a>
-      </p>
-      <p>
-        Türkiye Petrolleri: <a href="/api/tp/adana">/api/tp/adana</a>
+        Türkiye Petrolleri: <a href="/api/tp/34">/api/tp/34</a>
       </p>
     </main>
   );
