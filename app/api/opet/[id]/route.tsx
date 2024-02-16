@@ -45,7 +45,7 @@ export async function GET(
     const responses = await Promise.all(links.map((link) => fetch(link)));
     const data = await Promise.all(responses.map((res) => res.json()));
 
-    if (id === "34") {
+    if (Array.isArray(links)) {
       result = normalizeData([...data[0], ...data[1]]);
     } else {
       result = normalizeData(data);

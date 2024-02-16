@@ -1,5 +1,6 @@
 import { CITIES } from "../const";
 import { NextRequest } from "next/server";
+import { isValidId } from "@/utils/helper";
 
 export const runtime = "edge";
 export const preferredRegion = ["fra1", "cdg1", "dub1"];
@@ -13,8 +14,8 @@ export async function GET(
   let urls = [];
   let result = null;
 
-  if (!city) {
-    return new Response("Geçersiz şehir adı", {
+  if (!isValidId(Number(id))) {
+    return new Response("Geçersiz plaka", {
       status: 400,
     });
   }
@@ -39,7 +40,7 @@ export async function GET(
     const responses = await Promise.all(urls.map((url) => fetch(url)));
     const data = await Promise.all(responses.map((res) => res.json()));
 
-    if (id === "34") {
+    if (Array.isArray(city)) {
       result = normalizeData([...data[0], ...data[1]]);
     } else {
       result = normalizeData(data);
