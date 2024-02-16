@@ -1,36 +1,60 @@
 export default function Home() {
   return (
-    <main className="">
-      <h3>
-        Türkiye&apos;deki akaryakıt fiyatlarını listelemek için aşağıdaki
-        endpointi kullanın
-      </h3>
-
-      <hr />
-
+    <main className="p-10">
+      <h1 className="text-lg font-semibold">
+        Türkiyedeki akaryakıt istasyonlarının güncel fiyatlarını dönen API
+      </h1>
       <p>
-        Petrol Ofisi fiyatları: <a href="/api/po/34">/api/po/34</a>
+        Sorun bildirmek veya katkı yapmak için{" "}
+        <a href="https://github.com/ademilter/akaryakit-fiyatlari">
+          github.com/ademilter/akaryakit-fiyatlari
+        </a>
       </p>
 
-      <p>
-        Opet fiyatları: <a href="/api/opet/34">/api/opet/34</a>
-      </p>
-
-      <p>
-        Alpet fiyatları: <a href="/api/alpet/34">/api/alpet/34</a>
-      </p>
-
-      <p>
-        Türkiye Petrolleri: <a href="/api/tp/34">/api/tp/34</a>
-      </p>
-
-      <p>
-        BP: <a href="/api/bp/34">/api/tp/34</a>
-      </p>
-
-      {/*<p>
-        aytemiz: <a href="/api/aytemiz/34">/api/aytemiz/34</a>
-      </p>*/}
+      <table className="mt-6">
+        <tbody>
+          <tr>
+            <td>Petrol Ofisi:</td>
+            <td>
+              <a href="/api/po/34">
+                <code>/api/po/34</code>
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Opet:</td>
+            <td>
+              <a href="/api/opet/34">
+                <code>/api/opet/34</code>
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Alpet:</td>
+            <td>
+              <a href="/api/alpet/34">
+                <code>/api/alpet/34</code>
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Türkiye Petrolleri:</td>
+            <td>
+              <a href="/api/tp/34">
+                <code>/api/tp/34</code>
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td>BP:</td>
+            <td>
+              <a href="/api/bp/34">
+                <code>/api/bp/34</code>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </main>
   );
 }
