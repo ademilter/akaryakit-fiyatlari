@@ -59,7 +59,13 @@ export async function GET(
       },
     });
   } catch (error) {
-    return new Response("Failed to fetch the data", { status: 500 });
+    return Response.json(
+      {
+        message: "Bir hata oluştu",
+        error,
+      },
+      { status: 500 },
+    );
   }
 }
 
