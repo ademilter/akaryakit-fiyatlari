@@ -22,17 +22,21 @@ export async function GET(
 
   if (Array.isArray(city)) {
     urls = city.map((city) =>
-      [
-        "https://www.bp.com/bp-tr-pump-prices/api/PumpPrices?strCity=",
-        city,
-      ].join(""),
+      encodeURI(
+        [
+          "https://www.bp.com/bp-tr-pump-prices/api/PumpPrices?strCity=",
+          city,
+        ].join(""),
+      ),
     );
   } else {
     urls = [
-      [
-        "https://www.bp.com/bp-tr-pump-prices/api/PumpPrices?strCity=",
-        city,
-      ].join(""),
+      encodeURI(
+        [
+          "https://www.bp.com/bp-tr-pump-prices/api/PumpPrices?strCity=",
+          city,
+        ].join(""),
+      ),
     ];
   }
 
@@ -40,10 +44,10 @@ export async function GET(
     const responses = await Promise.all(urls.map((url) => fetch(url)));
     const data = await Promise.all(responses.map((res) => res.json()));
 
-    if (Array.isArray(city)) {
+    if (urls.length > 1) {
       result = normalizeData([...data[0], ...data[1]]);
     } else {
-      result = normalizeData(data);
+      result = normalizeData(data[0]);
     }
 
     return Response.json(result, {

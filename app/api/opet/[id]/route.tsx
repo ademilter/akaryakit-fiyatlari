@@ -9,7 +9,7 @@ export async function GET(
   { params }: { params: { id: string } },
 ) {
   const id = Number(params.id);
-  let links = [];
+  let urls = [];
   let result = null;
 
   if (!isValidId(Number(id))) {
@@ -19,7 +19,7 @@ export async function GET(
   }
 
   if (id === 34) {
-    links = [
+    urls = [
       [
         "https://api.opet.com.tr/api/fuelprices/prices?ProvinceCode=",
         34,
@@ -32,7 +32,7 @@ export async function GET(
       ].join(""),
     ];
   } else {
-    links = [
+    urls = [
       [
         "https://api.opet.com.tr/api/fuelprices/prices?ProvinceCode=",
         id,
@@ -42,13 +42,13 @@ export async function GET(
   }
 
   try {
-    const responses = await Promise.all(links.map((link) => fetch(link)));
+    const responses = await Promise.all(urls.map((url) => fetch(url)));
     const data = await Promise.all(responses.map((res) => res.json()));
 
-    if (Array.isArray(links)) {
+    if (urls.length > 1) {
       result = normalizeData([...data[0], ...data[1]]);
     } else {
-      result = normalizeData(data);
+      result = normalizeData(data[0]);
     }
 
     return Response.json(result, {
