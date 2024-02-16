@@ -60,6 +60,14 @@ export default function Home() {
                 </Link>
               </Table.Cell>
             </Table.Row>
+            <Table.Row>
+              <Table.RowHeaderCell>Sunpet</Table.RowHeaderCell>
+              <Table.Cell>
+                <Link underline="always" href="/api/sunpet/34">
+                  /api/sunpet/34
+                </Link>
+              </Table.Cell>
+            </Table.Row>
           </Table.Body>
         </Table.Root>
       </div>

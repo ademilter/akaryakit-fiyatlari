@@ -10,6 +10,7 @@ export const brands = {
   bp: "BP",
   opet: "Opet",
   tp: "Türk Petrolleri",
+  sunpet: "Sunpet",
 };
 
 const defaultData: { sonYenileme: string; fiyatlar: [] } = {
