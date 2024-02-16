@@ -21,10 +21,15 @@ export default function Demo() {
 
   async function getData() {
     setLoading(true);
-    const response = await fetch(`api/${brand}/${id}`);
-    const data = await response.json();
-    setData(data);
-    setLoading(false);
+    try {
+      const response = await fetch(`api/${brand}/${id}`);
+      const data = await response.json();
+      setData(data);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
   }
 
   useEffect(() => {
