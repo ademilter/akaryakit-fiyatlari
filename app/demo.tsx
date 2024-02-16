@@ -1,7 +1,8 @@
 "use client";
 
-import { CITIES } from "./api/alpet/const";
+import { CITIES } from "./api/aytemiz/const";
 import { useEffect, useState } from "react";
+import { Select, Table } from "@radix-ui/themes";
 
 export const brands = {
   po: "Petrol Ofisi",
@@ -14,12 +15,16 @@ export const brands = {
 export default function Demo() {
   const [brand, setBrand] = useState("po");
   const [id, setId] = useState(34);
+
+  const [loading, setLoading] = useState(false);
   const [data, setData] = useState<{ sonYenileme: string; fiyatlar: [] }>();
 
   async function getData() {
+    setLoading(true);
     const response = await fetch(`api/${brand}/${id}`);
     const data = await response.json();
     setData(data);
+    setLoading(false);
   }
 
   useEffect(() => {
@@ -28,51 +33,71 @@ export default function Demo() {
 
   return (
     <>
-      <h4 className="font-semibold mb-2">Demo</h4>
-
       <div className="flex items-center gap-2">
-        <select value={brand} onChange={(e) => setBrand(e.target.value)}>
-          {Object.keys(brands).map((brand: string) => (
-            <option key={brand} value={brand}>
-              {/* @ts-ignore*/}
-              {brands[brand]}
-            </option>
-          ))}
-        </select>
-        <select value={id} onChange={(e) => setId(Number(e.target.value))}>
-          {Object.keys(CITIES).map((id) => (
-            <option key={id} value={id}>
-              {CITIES[id]}
-            </option>
-          ))}
-        </select>
+        <Select.Root
+          disabled={loading}
+          value={brand}
+          onValueChange={(value) => setBrand(value)}
+        >
+          <Select.Trigger />
+          <Select.Content>
+            {Object.keys(brands).map((brand: string) => (
+              <Select.Item key={brand} value={brand}>
+                {/* @ts-ignore*/}
+                {brands[brand]}
+              </Select.Item>
+            ))}
+          </Select.Content>
+        </Select.Root>
+
+        <Select.Root
+          disabled={loading}
+          value={String(id)}
+          onValueChange={(value) => setId(Number(value))}
+        >
+          <Select.Trigger />
+          <Select.Content>
+            {Object.keys(CITIES).map((id) => (
+              <Select.Item key={id} value={id}>
+                {CITIES[id]}
+              </Select.Item>
+            ))}
+          </Select.Content>
+        </Select.Root>
       </div>
 
-      <table className="mt-4">
-        <thead>
-          <th>İlçe</th>
-          <th>Benzin</th>
-          <th>Mazot</th>
-          <th>LPG</th>
-        </thead>
+      <div className="mt-4">
+        <Table.Root variant="surface" size={{ xs: "1", md: "2" }}>
+          <Table.Header>
+            <Table.Row>
+              <Table.ColumnHeaderCell>İlçe</Table.ColumnHeaderCell>
+              <Table.ColumnHeaderCell>Benzin</Table.ColumnHeaderCell>
+              <Table.ColumnHeaderCell>Mazot</Table.ColumnHeaderCell>
+              <Table.ColumnHeaderCell>LPG</Table.ColumnHeaderCell>
+            </Table.Row>
+          </Table.Header>
 
-        <tbody>
-          {data?.fiyatlar.map((item: any) => (
-            <tr key={item.ilce}>
-              <td>{item.ilce}</td>
-              <td className="tabular-nums slashed-zero">
-                {item.benzin} <span className="opacity-60 text-sm">TL/L</span>
-              </td>
-              <td className="tabular-nums slashed-zero">
-                {item.mazot} <span className="opacity-60 text-sm">TL/L</span>
-              </td>
-              <td className="tabular-nums slashed-zero">
-                {item.lpg} <span className="opacity-60 text-sm">TL/L</span>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+          <Table.Body>
+            {data?.fiyatlar.map((item: any) => (
+              <Table.Row key={item.ilce}>
+                <Table.RowHeaderCell>{item.ilce}</Table.RowHeaderCell>
+                <Table.RowHeaderCell className="whitespace-nowrap">
+                  {item.benzin}
+                  <span className="opacity-40 text-sm">TL</span>
+                </Table.RowHeaderCell>
+                <Table.RowHeaderCell className="whitespace-nowrap">
+                  {item.mazot}
+                  <span className="opacity-40 text-sm">TL</span>
+                </Table.RowHeaderCell>
+                <Table.RowHeaderCell className="whitespace-nowrap">
+                  {item.lpg}
+                  <span className="opacity-40 text-sm">TL</span>
+                </Table.RowHeaderCell>
+              </Table.Row>
+            ))}
+          </Table.Body>
+        </Table.Root>
+      </div>
     </>
   );
 }
