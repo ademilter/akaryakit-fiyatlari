@@ -12,15 +12,21 @@ export const brands = {
   tp: "Türk Petrolleri",
 };
 
+const defaultData: { sonYenileme: string; fiyatlar: [] } = {
+  sonYenileme: "",
+  fiyatlar: [],
+};
+
 export default function Demo() {
   const [brand, setBrand] = useState("po");
   const [id, setId] = useState(34);
 
   const [loading, setLoading] = useState(false);
-  const [data, setData] = useState<{ sonYenileme: string; fiyatlar: [] }>();
+  const [data, setData] = useState(defaultData);
 
   async function getData() {
     setLoading(true);
+    setData(defaultData);
     try {
       const response = await fetch(`api/${brand}/${id}`);
       const data = await response.json();
