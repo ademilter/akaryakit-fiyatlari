@@ -9,18 +9,18 @@ export const preferredRegion = ["fra1", "cdg1", "dub1"];
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { sehir: string } },
+  { params }: { params: { id: string } },
 ) {
-  const sehir = params.sehir;
-  const code = CITIES[sehir];
+  const id = params.id;
+  const city = CITIES[id];
 
-  if (!code) {
+  if (!city) {
     return new Response("Geçersiz şehir adı", {
       status: 400,
     });
   }
 
-  const url = `https://www.aytemiz.com.tr/akaryakit-fiyatlari/benzin-fiyatlari?city=${sehir}`;
+  const url = `https://www.aytemiz.com.tr/akaryakit-fiyatlari/benzin-fiyatlari?city=${city}`;
 
   try {
     const response = await fetch(url);
