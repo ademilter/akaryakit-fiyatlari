@@ -58,7 +58,7 @@ export default function Demo() {
 
         <tbody>
           {data?.fiyatlar.map((item: any) => (
-            <tr>
+            <tr key={item.ilce}>
               <td>{item.ilce}</td>
               <td className="tabular-nums slashed-zero">
                 {item.benzin} <span className="opacity-60 text-sm">TL/L</span>
