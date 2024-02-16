@@ -73,7 +73,7 @@ export default function Home() {
       </div>
 
       <div className="mt-4">
-        <Callout.Root size="1">
+        <Callout.Root size="1" color="gray">
           <Callout.Icon>
             <InfoCircledIcon />
           </Callout.Icon>

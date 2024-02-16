@@ -79,7 +79,7 @@ export default function Demo() {
       </div>
 
       <div className="mt-4">
-        <Table.Root variant="surface" size={{ xs: "1", md: "2" }}>
+        <Table.Root variant="surface">
           <Table.Header>
             <Table.Row>
               <Table.ColumnHeaderCell>İlçe</Table.ColumnHeaderCell>
@@ -94,16 +94,22 @@ export default function Demo() {
               <Table.Row key={item.ilce}>
                 <Table.RowHeaderCell>{item.ilce}</Table.RowHeaderCell>
                 <Table.RowHeaderCell className="whitespace-nowrap">
-                  {item.benzin}
-                  <span className="opacity-40 text-sm">TL</span>
+                  {item.benzin}{" "}
+                  <span className="hidden md:inline opacity-40 text-sm">
+                    TL
+                  </span>
                 </Table.RowHeaderCell>
                 <Table.RowHeaderCell className="whitespace-nowrap">
-                  {item.mazot}
-                  <span className="opacity-40 text-sm">TL</span>
+                  {item.mazot}{" "}
+                  <span className="hidden md:inline opacity-40 text-sm">
+                    TL
+                  </span>
                 </Table.RowHeaderCell>
                 <Table.RowHeaderCell className="whitespace-nowrap">
-                  {item.lpg}
-                  <span className="opacity-40 text-sm">TL</span>
+                  {item.lpg}{" "}
+                  <span className="hidden md:inline opacity-40 text-sm">
+                    TL
+                  </span>
                 </Table.RowHeaderCell>
               </Table.Row>
             ))}
