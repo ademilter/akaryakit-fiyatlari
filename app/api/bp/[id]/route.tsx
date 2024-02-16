@@ -21,11 +21,11 @@ export async function GET(
   }
 
   if (Array.isArray(city)) {
-    urls = city.map((city) =>
+    urls = city.map((c) =>
       encodeURI(
         [
           "https://www.bp.com/bp-tr-pump-prices/api/PumpPrices?strCity=",
-          city,
+          c,
         ].join(""),
       ),
     );
