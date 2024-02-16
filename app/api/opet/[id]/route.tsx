@@ -9,7 +9,6 @@ export async function GET(
   { params }: { params: { id: string } },
 ) {
   const id = Number(params.id);
-  let urls = [];
   let result = null;
 
   if (!isValidId(Number(id))) {
@@ -18,28 +17,7 @@ export async function GET(
     });
   }
 
-  if (id === 34) {
-    urls = [
-      [
-        "https://api.opet.com.tr/api/fuelprices/prices?ProvinceCode=",
-        34,
-        "&IncludeAllProducts=true",
-      ].join(""),
-      [
-        "https://api.opet.com.tr/api/fuelprices/prices?ProvinceCode=",
-        934,
-        "&IncludeAllProducts=true",
-      ].join(""),
-    ];
-  } else {
-    urls = [
-      [
-        "https://api.opet.com.tr/api/fuelprices/prices?ProvinceCode=",
-        id,
-        "&IncludeAllProducts=true",
-      ].join(""),
-    ];
-  }
+  const urls = id === 34 ? [opetApiUrl(34), opetApiUrl(934)] : [opetApiUrl(id)];
 
   try {
     const responses = await Promise.all(urls.map((url) => fetch(url)));
@@ -80,4 +58,12 @@ function normalizeData(data: any[]) {
       };
     }),
   };
+}
+
+function opetApiUrl(id: number): string {
+  return [
+    "https://api.opet.com.tr/api/fuelprices/prices?ProvinceCode=",
+    id,
+    "&IncludeAllProducts=true",
+  ].join("");
 }
