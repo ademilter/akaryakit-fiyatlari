@@ -1,3 +1,4 @@
+import { CITIES } from "../const";
 import { NextRequest } from "next/server";
 import { isValidId } from "@/utils/helper";
 
@@ -9,7 +10,8 @@ export async function GET(
   { params }: { params: { id: string } },
 ) {
   const id = params.id;
-  let links = [];
+  const city = CITIES[id];
+  let urls = [];
   let result = null;
 
   if (!isValidId(Number(id))) {
@@ -18,34 +20,27 @@ export async function GET(
     });
   }
 
-  if (id === "34") {
-    links = [
+  if (Array.isArray(city)) {
+    urls = city.map((city) =>
       [
-        "https://api.opet.com.tr/api/fuelprices/prices?ProvinceCode=",
-        34,
-        "&IncludeAllProducts=true",
+        "https://www.bp.com/bp-tr-pump-prices/api/PumpPrices?strCity=",
+        city,
       ].join(""),
-      [
-        "https://api.opet.com.tr/api/fuelprices/prices?ProvinceCode=",
-        934,
-        "&IncludeAllProducts=true",
-      ].join(""),
-    ];
+    );
   } else {
-    links = [
+    urls = [
       [
-        "https://api.opet.com.tr/api/fuelprices/prices?ProvinceCode=",
-        id,
-        "&IncludeAllProducts=true",
+        "https://www.bp.com/bp-tr-pump-prices/api/PumpPrices?strCity=",
+        city,
       ].join(""),
     ];
   }
 
   try {
-    const responses = await Promise.all(links.map((link) => fetch(link)));
+    const responses = await Promise.all(urls.map((url) => fetch(url)));
     const data = await Promise.all(responses.map((res) => res.json()));
 
-    if (Array.isArray(links)) {
+    if (Array.isArray(city)) {
       result = normalizeData([...data[0], ...data[1]]);
     } else {
       result = normalizeData(data);
@@ -64,19 +59,22 @@ export async function GET(
   }
 }
 
-function normalizeData(data: any[]) {
+function normalizeData(
+  data: {
+    District: string;
+    Benzin: string;
+    Motorin: string;
+    LpgPrice: string;
+  }[],
+) {
   return {
     lastUpdate: new Date().toUTCString(),
     data: data.map((city: any) => {
-      const a100 = city.prices.find((o: any) => o.productCode === "A100");
-      const a128 = city.prices.find((o: any) => o.productCode === "A128");
-      const a110 = city.prices.find((o: any) => o.productCode === "A110");
-
       return {
-        ilce: city.districtName,
-        benzin: a100.amount,
-        mazot: a128.amount,
-        lpg: a110.amount,
+        ilce: city.District,
+        benzin: city.Benzin,
+        mazot: city.Motorin,
+        lpg: city.LpgPrice,
       };
     }),
   };
