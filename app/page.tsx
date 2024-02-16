@@ -13,41 +13,51 @@ export default function Home() {
         Türkiyedeki akaryakıt istasyonlarının güncel fiyatları
       </Heading>
 
-      <div className="mt-6 md:max-w-[320px]">
+      <div className="mt-4 md:max-w-[320px]">
         <Table.Root variant="surface" size="1">
           <Table.Body>
             <Table.Row>
               <Table.RowHeaderCell>Petrol Ofisi</Table.RowHeaderCell>
               <Table.RowHeaderCell>
-                <Link href="/api/po/34">/api/po/34</Link>
+                <Link underline="always" href="/api/po/34">
+                  /api/po/34
+                </Link>
               </Table.RowHeaderCell>
             </Table.Row>
 
             <Table.Row>
               <Table.RowHeaderCell>Opet</Table.RowHeaderCell>
               <Table.Cell>
-                <Link href="/api/opet/34">/api/opet/34</Link>
+                <Link underline="always" href="/api/opet/34">
+                  /api/opet/34
+                </Link>
               </Table.Cell>
             </Table.Row>
 
             <Table.Row>
               <Table.RowHeaderCell>Alpet</Table.RowHeaderCell>
               <Table.Cell>
-                <Link href="/api/alpet/34">/api/alpet/34</Link>
+                <Link underline="always" href="/api/alpet/34">
+                  /api/alpet/34
+                </Link>
               </Table.Cell>
             </Table.Row>
 
             <Table.Row>
               <Table.RowHeaderCell>Türkiye Petrolleri</Table.RowHeaderCell>
               <Table.Cell>
-                <Link href="/api/tp/34">/api/tp/34</Link>
+                <Link underline="always" href="/api/tp/34">
+                  /api/tp/34
+                </Link>
               </Table.Cell>
             </Table.Row>
 
             <Table.Row>
               <Table.RowHeaderCell>BP</Table.RowHeaderCell>
               <Table.Cell>
-                <Link href="/api/bp/34">/api/bp/34</Link>
+                <Link underline="always" href="/api/bp/34">
+                  /api/bp/34
+                </Link>
               </Table.Cell>
             </Table.Row>
           </Table.Body>
