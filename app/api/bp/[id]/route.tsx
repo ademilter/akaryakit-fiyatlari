@@ -68,8 +68,8 @@ function normalizeData(
   }[],
 ) {
   return {
-    lastUpdate: new Date().toUTCString(),
-    data: data.map((city: any) => {
+    sonYenileme: new Date().toUTCString(),
+    fiyatlar: data.map((city: any) => {
       return {
         ilce: city.District,
         benzin: city.Benzin,

@@ -1,7 +1,9 @@
+import Demo from "./demo";
+
 export default function Home() {
   return (
     <main className="p-10">
-      <h1 className="text-lg font-semibold">
+      <h1 className="text-xl font-semibold">
         Türkiyedeki akaryakıt istasyonlarının güncel fiyatlarını dönen API
       </h1>
       <p>
@@ -55,6 +57,10 @@ export default function Home() {
           </tr>
         </tbody>
       </table>
+
+      <hr className="my-10" />
+
+      <Demo />
     </main>
   );
 }

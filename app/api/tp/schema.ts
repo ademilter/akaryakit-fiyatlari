@@ -1,9 +1,9 @@
 const schema = {
   schema: {
-    lastUpdate: {
+    sonYenileme: {
       fill: new Date().toUTCString(),
     },
-    data: {
+    fiyatlar: {
       selector: ".pricetable table tbody tr",
       type: "array",
       schema: {

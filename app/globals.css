@@ -2,8 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-td,
-th {
+table td,
+table th {
     @apply px-4 py-2 border-2 border-gray-300;
 }
 
@@ -13,4 +13,8 @@ code {
 
 a {
     @apply text-blue-500 underline;
+}
+
+select {
+    @apply px-4 py-2 rounded;
 }
