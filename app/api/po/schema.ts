@@ -9,13 +9,13 @@ const schema = {
       schema: {
         ilce: "td:nth-child(1)",
         benzin: {
-          selector: "td:nth-child(2) span.without-tax | float",
+          selector: "td:nth-child(2) span.with-tax | float",
         },
         mazot: {
-          selector: "td:nth-child(4) span.without-tax | float",
+          selector: "td:nth-child(4) span.with-tax | float",
         },
         lpg: {
-          selector: "td:nth-child(5) span.without-tax | float",
+          selector: "td:nth-child(5) span.with-tax | float",
         },
       },
     },
