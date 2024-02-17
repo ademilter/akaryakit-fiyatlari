@@ -6,9 +6,7 @@ import Demo from "./demo";
 
 export default function Home() {
   return (
-    <main className="p-6 md:p-10">
-      {/*<ThemePanel />*/}
-
+    <main className="p-6 pb-0 md:p-10 md:pb-0">
       <Heading size="5">
         Türkiyedeki akaryakıt istasyonlarının güncel fiyatları
       </Heading>

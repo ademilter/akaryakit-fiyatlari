@@ -80,12 +80,16 @@ export default function Demo() {
 
       <div className="mt-4">
         <Table.Root variant="surface">
-          <Table.Header>
+          <Table.Header className="sticky top-0 z-10 bg-white">
             <Table.Row>
-              <Table.ColumnHeaderCell>İlçe</Table.ColumnHeaderCell>
+              <Table.ColumnHeaderCell className="rounded-tl-xl">
+                İlçe
+              </Table.ColumnHeaderCell>
               <Table.ColumnHeaderCell>Benzin</Table.ColumnHeaderCell>
               <Table.ColumnHeaderCell>Mazot</Table.ColumnHeaderCell>
-              <Table.ColumnHeaderCell>LPG</Table.ColumnHeaderCell>
+              <Table.ColumnHeaderCell className="rounded-tr-xl">
+                LPG
+              </Table.ColumnHeaderCell>
             </Table.Row>
           </Table.Header>
 

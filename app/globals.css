@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.rt-ScrollAreaRoot,
+[data-radix-scroll-area-viewport],
+.rt-TableRootTable {
+    @apply !overflow-visible;
+}
