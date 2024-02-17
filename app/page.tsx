@@ -53,10 +53,20 @@ export default function Home() {
             </Table.Row>
 
             <Table.Row>
-              <Table.RowHeaderCell>BP</Table.RowHeaderCell>
+              <Table.RowHeaderCell>
+                BP <span className="opacity-60">(ban yedik :/)</span>
+              </Table.RowHeaderCell>
               <Table.Cell>
                 <Link underline="always" href="/api/bp/34">
                   /api/bp/34
+                </Link>
+              </Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.RowHeaderCell>Sunpet</Table.RowHeaderCell>
+              <Table.Cell>
+                <Link underline="always" href="/api/sunpet/34">
+                  /api/sunpet/34
                 </Link>
               </Table.Cell>
             </Table.Row>
