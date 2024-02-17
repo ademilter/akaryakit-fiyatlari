@@ -10,9 +10,7 @@ export async function GET(
   { params }: { params: { id: string } },
 ) {
   const id = params.id;
-  const city = CITIES[id];
-  let urls = [];
-  let result = null;
+  const cities = CITIES[id];
 
   if (!isValidId(Number(id))) {
     return new Response("Geçersiz plaka", {
@@ -20,35 +18,20 @@ export async function GET(
     });
   }
 
-  if (Array.isArray(city)) {
-    urls = city.map((c) =>
-      encodeURI(
-        [
-          "https://www.bp.com/bp-tr-pump-prices/api/PumpPrices?strCity=",
-          c,
-        ].join(""),
-      ),
-    );
-  } else {
-    urls = [
-      encodeURI(
-        [
-          "https://www.bp.com/bp-tr-pump-prices/api/PumpPrices?strCity=",
-          city,
-        ].join(""),
-      ),
-    ];
-  }
+  const urls = cities.map((c) =>
+    encodeURI(
+      [
+        "https://www.bp.com/bp-tr-pump-prices/api/PumpPrices?strCity=",
+        c,
+      ].join(""),
+    ),
+  );
 
   try {
     const responses = await Promise.all(urls.map((url) => fetch(url)));
     const data = await Promise.all(responses.map((res) => res.json()));
 
-    if (urls.length > 1) {
-      result = normalizeData([...data[0], ...data[1]]);
-    } else {
-      result = normalizeData(data[0]);
-    }
+    const result = normalizeData([].concat(...data))
 
     return Response.json(result, {
       status: 200,
