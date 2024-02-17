@@ -1,4 +1,4 @@
-const CITIES: { [key: string]: string } = {
+const CITIES: { [key: string]: string | string[] } = {
   1: "adana",
   2: "adiyaman",
   3: "afyon",
@@ -35,8 +35,7 @@ const CITIES: { [key: string]: string } = {
   31: "hatay",
   32: "isparta",
   33: "mersin",
-  34: "istanbul-avrupa",
-  344: "istanbul-anadolu",
+  34: ["istanbul-avrupa", "istanbul-anadolu"],
   35: "izmir",
   36: "kars",
   37: "kastamonu",

@@ -16,6 +16,10 @@ const schema = {
           selector: "td:nth-child(4)",
           transform,
         },
+        lpg: {
+          selector: "td:nth-child(6)",
+          transform,
+        },
       },
     },
   },

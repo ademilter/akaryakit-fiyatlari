@@ -3,6 +3,7 @@ import { parse } from "muninn";
 import { schema } from "../schema";
 import { CITIES } from "../const";
 import { NextRequest } from "next/server";
+import { isValidId } from "@/utils/helper";
 
 export const runtime = "edge";
 export const preferredRegion = ["fra1", "cdg1", "dub1"];
@@ -13,20 +14,46 @@ export async function GET(
 ) {
   const id = params.id;
   const city = CITIES[id];
+  let urls = [];
+  let result = null;
 
-  if (!city) {
-    return new Response("Geçersiz şehir adı", {
+  if (!isValidId(Number(id))) {
+    return new Response("Geçersiz plaka", {
       status: 400,
     });
   }
 
-  const url = `https://www.sunpettr.com.tr/yakit-fiyatlari-${city}`;
+  if (Array.isArray(city)) {
+    urls = city.map((c) => {
+      return `https://www.sunpettr.com.tr/yakit-fiyatlari-${c}`;
+    });
+  } else {
+    urls = [`https://www.sunpettr.com.tr/yakit-fiyatlari-${city}`];
+  }
 
   try {
-    const response = await fetch(url);
-    const data = await response.text();
+    const responses = await Promise.all(urls.map((url) => fetch(url)));
+    const data = await Promise.all(responses.map((res) => res.text()));
 
-    const result = parse(data, schema as Schema);
+    if (urls.length > 1) {
+      result = {
+        sonYenileme: {
+          fill: new Date().toUTCString(),
+        },
+        fiyatlar: [
+          ...(parse(data[0], schema as Schema).fiyatlar as []),
+          ...(parse(data[1], schema as Schema).fiyatlar as []),
+        ],
+      };
+    } else {
+      result = {
+        sonYenileme: {
+          fill: new Date().toUTCString(),
+        },
+        fiyatlar: [...(parse(data[0], schema as Schema).fiyatlar as [])],
+      };
+    }
+
     return Response.json(result, {
       status: 200,
       headers: {
