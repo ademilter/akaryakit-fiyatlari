@@ -11,12 +11,8 @@ const schema = {
         selector: "td:nth-child(2)",
         transform: (val: any) => parseFloat(val.replace(",", ".")),
       },
-      motorin: {
+      mazot: {
         selector: "td:nth-child(3)",
-        transform: (val: any) => parseFloat(val.replace(",", ".")),
-      },
-      motorinEuro: {
-        selector: "td:nth-child(4)",
         transform: (val: any) => parseFloat(val.replace(",", ".")),
       },
       lpg: {

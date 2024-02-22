@@ -15,12 +15,12 @@ const schema = {
         type: "text",
         transform: (val: string) => parseFloat(val),
       },
-      gazYagi: {
+      lpg: {
         selector: "td:nth-child(3)",
         type: "text",
         transform: (val: string) => parseFloat(val),
       },
-      motorin: {
+      mazot: {
         selector: "td:nth-child(4)",
         type: "text",
         transform: (val: string) => parseFloat(val),
