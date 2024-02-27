@@ -28,9 +28,9 @@ export async function GET(
     const tableStartIndex = html.indexOf("<table");
     const tableEndIndex = html.indexOf("</table>", tableStartIndex);
     const tableHtml = html.slice(tableStartIndex, tableEndIndex + 8);
-    const data = parse(tableHtml, schema as Schema);
+    const data:any = parse(tableHtml, schema as Schema);
     const lines = data.trim().split(/\n\s*\n\s*/);
-    const result = [];
+    const result:any[] = [];
 
     lines.forEach((line: any) => {
       const parts = line.trim().split(/\s+/);

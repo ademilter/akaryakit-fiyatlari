@@ -28,13 +28,13 @@ export async function GET(
     const tableStartIndex = html.indexOf("<table");
     const tableEndIndex = html.indexOf("</table>", tableStartIndex);
     const tableHtml = html.slice(tableStartIndex, tableEndIndex + 8);
-    const data = parse(tableHtml, schema as Schema);
+    const data: any = parse(tableHtml, schema as Schema);
     const lines = data.trim().split(/\n\s*\n\s*/);
-    const result = [];
-
-    lines.forEach((line: any) => {
+    const result: any[] = [];
+    lines.forEach((line: string) => {
+      // Changed 'any' to 'string'
       const parts = line.trim().split(/\s+/);
-      const ilce = parts[0].split('/')[1].trim();;
+      const ilce = parts[0].split("/")[1].trim();
       const benzin = parseFloat(parts[1].replace(",", "."));
       const mazot = parseFloat(parts[2].replace(",", "."));
       const lpg = parseFloat(parts[4].replace(",", "."));
@@ -46,7 +46,6 @@ export async function GET(
         lpg,
       });
     });
-
     const finalResult = {
       sonYenileme: new Date().toUTCString(),
       fiyatlar: result,

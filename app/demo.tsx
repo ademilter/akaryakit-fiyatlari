@@ -15,6 +15,7 @@ export const brands = {
   sunpet: "Sunpet",
   go: "Go",
   moil: "M oil",
+  total: "Total Energiesis",
 };
 
 type BrandType = {
