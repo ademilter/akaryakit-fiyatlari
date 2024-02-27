@@ -17,7 +17,11 @@ export async function GET(
     const responses = await Promise.all(urls.map((url) => fetch(url)));
     const data = await Promise.all(responses.map((res) => res.json()));
     console.log(data);
-
+    if (urls.length > 1) {
+      result = normalizeData([...data[0], ...data[1]]);
+    } else {
+      result = normalizeData(data[0]);
+    }
     return Response.json(data, {
       status: 200,
       headers: {
@@ -34,9 +38,8 @@ export async function GET(
 
 function totalApiUrl(id: number): string {
   return [
-    "https://apimobiletest.oyakpetrol.com.tr/exapi/fuel_prices/",
+    "https://apimobiletest.oyakpetrol.com.tr//exapi/fuel_prices/",
     id,
-    "&IncludeAllProducts=true",
   ].join("");
 }
 
@@ -44,15 +47,11 @@ function normalizeData(data: any[]) {
   return {
     sonYenileme: new Date().toUTCString(),
     fiyatlar: data.map((city: any) => {
-      const a100 = city.prices.find((o: any) => o.productCode === "A100");
-      const a128 = city.prices.find((o: any) => o.productCode === "A128");
-      const a110 = city.prices.find((o: any) => o.productCode === "A110");
-
       return {
-        ilce: city.districtName,
-        benzin: a100.amount,
-        mazot: a128.amount,
-        lpg: a110.amount,
+        ilce: city.county_name,
+        benzin: city.kursunsuz_95_excellium_95,
+        mazot: city.motorin,
+        lpg: city.otogaz,
       };
     }),
   };
