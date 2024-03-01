@@ -68,6 +68,30 @@ export default function Home() {
                 </Link>
               </Table.Cell>
             </Table.Row>
+            <Table.Row>
+              <Table.RowHeaderCell>Go</Table.RowHeaderCell>
+              <Table.Cell>
+                <Link underline="always" href="/api/go/34">
+                  /api/go/34
+                </Link>
+              </Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.RowHeaderCell>M oil</Table.RowHeaderCell>
+              <Table.Cell>
+                <Link underline="always" href="/api/moil/34">
+                  /api/moil/34
+                </Link>
+              </Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.RowHeaderCell>Total Enerji</Table.RowHeaderCell>
+              <Table.Cell>
+                <Link underline="always" href="/api/total/34">
+                  /api/total/34
+                </Link>
+              </Table.Cell>
+            </Table.Row>
           </Table.Body>
         </Table.Root>
       </div>

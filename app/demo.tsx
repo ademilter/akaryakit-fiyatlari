@@ -1,6 +1,8 @@
 "use client";
 
 import { CITIES } from "./api/aytemiz/const";
+import { MCITIES } from "./api/moil/const";
+
 import { useEffect, useState } from "react";
 import { Select, Table } from "@radix-ui/themes";
 
@@ -11,6 +13,13 @@ export const brands = {
   opet: "Opet",
   tp: "Türk Petrolleri",
   sunpet: "Sunpet",
+  go: "Go",
+  moil: "M oil",
+  total: "Total Energiesis",
+};
+
+type BrandType = {
+  [key: string]: string;
 };
 
 const defaultData: { sonYenileme: string; fiyatlar: [] } = {
@@ -69,9 +78,9 @@ export default function Demo() {
         >
           <Select.Trigger />
           <Select.Content>
-            {Object.keys(CITIES).map((id) => (
+            {Object.keys(brand === "moil" ? MCITIES : CITIES).map((id) => (
               <Select.Item key={id} value={id}>
-                {CITIES[id]}
+                {brand === "moil" ? MCITIES[id] : CITIES[id]}
               </Select.Item>
             ))}
           </Select.Content>
@@ -94,7 +103,7 @@ export default function Demo() {
           </Table.Header>
 
           <Table.Body>
-            {data?.fiyatlar.map((item: any) => (
+            {data && data?.fiyatlar.map((item: any) => (
               <Table.Row key={item.ilce}>
                 <Table.RowHeaderCell>{item.ilce}</Table.RowHeaderCell>
                 <Table.RowHeaderCell className="whitespace-nowrap">
